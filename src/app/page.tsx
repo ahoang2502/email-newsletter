@@ -1,10 +1,8 @@
-import { Home } from "@/modules/home/Home";
-
-
+import Home from "@/modules/home";
 
 export default function Page() {
   return (
-    <div className="text-white bg-pink-500">
+    <div>
       <Home />
     </div>
   );

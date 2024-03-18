@@ -30,7 +30,7 @@ export const Banner = () => {
         />
 
         <div className="absolute ">
-          <h1 className="font-clashDisplay uppercase font-bold text-black text-[2.75rem] md:text-[4rem] xl:text-[5.75rem] max-w-4xl mx-auto text-center z-10">
+          <h1 className="font-clashDisplay uppercase font-bold text-[2.75rem] md:text-[4rem] xl:text-[5.75rem] max-w-4xl mx-auto text-center z-10">
             THE NEWSLETTER PLATFORM BUILT FOR
             <span className="font-style">GROW</span>
           </h1>
