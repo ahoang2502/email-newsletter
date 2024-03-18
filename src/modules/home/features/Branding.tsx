@@ -6,7 +6,7 @@ import { partners } from "@/app/configs/constants";
 
 export const Branding = () => {
   return (
-    <div className="border-t-2 border-b border-[#000] py-10 bg-white">
+    <div className="border-t-2 border-b-2 border-[#000] pt-10 bg-white">
       <h3 className="uppercase text-xl md:text-2xl text-center max-w-3xl mx-auto font-[400] z-20 relative">
         CREATED BY THE EARLY MORNING BREW TEAM
       </h3>
