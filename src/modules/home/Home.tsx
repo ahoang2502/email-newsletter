@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Header } from "@/shared/widgets/header/header";
+import Header from "@/shared/widgets/header/Header";
 
 export const Home = () => {
   return (

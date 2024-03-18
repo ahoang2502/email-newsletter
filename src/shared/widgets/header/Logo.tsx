@@ -2,7 +2,7 @@ import React from "react";
 
 export const Logo = () => {
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center mr-4 lg:mr-0">
       <svg
         version="1.1"
         id="a"
@@ -10,7 +10,7 @@ export const Logo = () => {
         x="0px"
         y="0px"
         viewBox="0 0 439.4 110.2"
-        className="fill-black cursor-pointer h-[28px] lg:h-[32px]"
+        className="fill-black cursor-pointer h-[24px] lg:h-[32px]"
       >
         <g id="b">
           <g id="c">
@@ -45,7 +45,7 @@ export const Logo = () => {
           </g>
         </g>
       </svg>
-      <h5 className="absolute right-[-45px] xl:right-[-35px] pt-1 font-medium text-2xl">
+      <h5 className="absolute right-[-40px] lg:right-[-55px] pt-1 font-medium text-lg lg:text-2xl">
         ENewsletter
       </h5>
     </div>
