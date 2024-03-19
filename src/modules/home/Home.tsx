@@ -1,12 +1,13 @@
 import React from "react";
 
 import Header from "@/shared/widgets/header/Header";
-import { Banner } from "./features/Banner";
-import { Branding } from "./features/Branding";
-import { Benefits } from "./features/Benefits";
-import { FeatureHighlight } from "./features/FeatureHighlight";
-import { Pricing } from "./features/Pricing";
-import { Footer } from "@/shared/widgets/footer/Footer";
+import { Banner } from "./elements/Banner";
+import { Branding } from "./elements/Branding";
+import { Benefits } from "./elements/Benefits";
+import { FeatureHighlight } from "./elements/FeatureHighlight";
+import { Pricing } from "./elements/Pricing";
+import Footer from "@/shared/widgets/footer";
+
 
 const Home = () => {
   return (

@@ -11,7 +11,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="w-full bg-black text-white pt-6">
       <div className="w-[95%] md:flex m-auto py-5 ">
@@ -119,3 +119,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer
