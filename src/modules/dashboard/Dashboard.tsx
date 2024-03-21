@@ -3,11 +3,7 @@ import React from "react";
 import { Main } from "./elements/main/Main";
 
 const Dashboard = () => {
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+  return <Main />;
 };
 
 export default Dashboard;

@@ -3,6 +3,7 @@
 import { useUser } from "@clerk/nextjs";
 import { NextUIProvider } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 
 import { DashboardSidebar } from "../widgets/dashboard/sidebar/DashboardSidebar";
 
@@ -35,6 +36,8 @@ export default function Providers({ children }: ProviderProps) {
       ) : (
         <>{children}</>
       )}
+
+      <Toaster position="top-center" reverseOrder={false} />
     </NextUIProvider>
   );
 }
