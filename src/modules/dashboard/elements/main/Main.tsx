@@ -9,11 +9,13 @@ import { DashboardOverviewCard } from "@/shared/components/cards/DashboardOvervi
 import { SubscribersChart } from "@/shared/components/charts/SubscribersChart";
 import { ICONS } from "@/shared/utils/Icons";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const Main = () => {
   const { user } = useUser();
 
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
 
   const handleCopyClick = () => {
     const smallText = document.querySelector(".copy-text") as HTMLElement;
@@ -55,7 +57,10 @@ export const Main = () => {
         <div className="w-[35%] p-5">
           {/* Create newsletter button */}
           <div className="w-full flex justify-end">
-            <Button className="bg-black text-white text-lg rounded-xl !px-6">
+            <Button
+              className="bg-black text-white text-lg rounded-xl !px-6"
+              onClick={() => router.push("/dashboard/write")}
+            >
               <span className="mr-1 ml-[-5px] ">{ICONS.write}</span>
               Start writing
             </Button>
