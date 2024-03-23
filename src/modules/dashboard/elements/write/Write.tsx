@@ -1,16 +1,23 @@
 "use client";
 
 import { Button } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import { ICONS } from "@/shared/utils/Icons";
+import { getEmails } from "@/actions/get.emails";
+import { useClerk } from "@clerk/nextjs";
+import Link from "next/link";
 
 export const Write = () => {
   const [emailTitle, setEmailTitle] = useState("");
   const [open, setOpen] = useState(false);
+
+  const [emails, setEmails] = useState<any>([]);
   const router = useRouter();
+
+  const { user } = useClerk();
 
   const handleCreate = () => {
     if (emailTitle.length === 0) {
@@ -20,6 +27,21 @@ export const Write = () => {
 
       router.push(`/dashboard/new-email?subject=${formattedTitle}`);
     }
+  };
+
+  const findEmails = async () => {
+    await getEmails({ newsLetterOwnerId: user?.id! })
+      .then((res) => setEmails(res))
+      .catch((error) => console.log("🔴 [FIND_EMAILS]", error));
+  };
+
+  useEffect(() => {
+    findEmails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  const handleDelete = async (id: string) => {
+    //
   };
 
   return (
@@ -32,6 +54,35 @@ export const Write = () => {
 
         <h5 className="text-xl ">Create new </h5>
       </div>
+
+      {/* Saved emails */}
+      {emails &&
+        emails.map((i: any) => {
+          const formattedTitle = i?.title
+            ?.replace(/\s+/g, "-")
+            .replace(/&/g, "-");
+
+          return (
+            <div
+              key={i._id}
+              className="w-[200px] h-[200px] z-[0] relative bg-slate-50 flex flex-col items-center justify-center rounded border cursor-pointer"
+            >
+              <span
+                className="absolute block z-20 right-2 top-2 text-2xl cursor-pointer"
+                onClick={() => handleDelete(i?._id)}
+              >
+                {ICONS.delete}
+              </span>
+
+              <Link
+                className="text-xl "
+                href={`/dashboard/new-email?subject=${formattedTitle}`}
+              >
+                {i.title}
+              </Link>
+            </div>
+          );
+        })}
 
       {open && (
         <div className="absolute flex items-center justify-center top-0 left-0 bg-[#00000028] h-screen w-full">

@@ -9,13 +9,14 @@ import { Button } from "@nextui-org/react";
 
 import { DefaultJsonData } from "@/assets/mails/default";
 import { saveEmail } from "@/actions/save.email";
+import { getEmailDetails } from "@/actions/get.email-details";
 
 type Props = {
   subjectTitle: string;
 };
 
 export function EmailEditorComponent({ subjectTitle }: Props) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [jsonData, setJsonData] = useState<any | null>(DefaultJsonData);
 
   const router = useRouter();
@@ -66,6 +67,24 @@ export function EmailEditorComponent({ subjectTitle }: Props) {
       });
     });
   };
+
+  const getEmail = async () => {
+    await getEmailDetails({
+      title: subjectTitle,
+      newsLetterOwnerId: user?.id!,
+    }).then((res: any) => {
+      if (res) {
+        setJsonData(JSON.parse(res?.content));
+      }
+
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    getEmail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <>
