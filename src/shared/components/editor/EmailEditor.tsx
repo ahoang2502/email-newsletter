@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { Button } from "@nextui-org/react";
 
 import { DefaultJsonData } from "@/assets/mails/default";
-import { Button } from "@nextui-org/react";
+import { saveEmail } from "@/actions/save.email";
 
 type Props = {
   subjectTitle: string;
@@ -48,7 +49,22 @@ export function EmailEditorComponent({ subjectTitle }: Props) {
   };
 
   const saveDraft = () => {
-    
+    const unlayer = emailEditorRef.current?.editor;
+
+    unlayer?.exportHtml(async (data) => {
+      const { design } = data;
+
+      await saveEmail({
+        title: subjectTitle,
+        content: JSON.stringify(design),
+        newsLetterOwnerId: user?.id!,
+      }).then((res: any) => {
+        console.log({ res });
+        toast.success(res?.message || "Successfully saved email");
+
+        router.push("/dashboard/write");
+      });
+    });
   };
 
   return (
