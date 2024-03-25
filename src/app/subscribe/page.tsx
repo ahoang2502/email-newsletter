@@ -1,5 +1,6 @@
 "use client";
 
+import { subscribe } from "@/actions/add.subscribe";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
@@ -15,9 +16,10 @@ const SubscribePage = () => {
     e.preventDefault();
     setLoading(true);
 
-    await subscribe({})
+    await subscribe({ email: value, username })
       .then((res) => {
         setLoading(false);
+
         if (res.error) {
           toast.error(res.error);
         } else {
@@ -33,9 +35,9 @@ const SubscribePage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center h-screen">
+    <div className="w-full flex flex-col items-center justify-center h-screen bg-white">
       <div className="">
-        <h1 className="text-7xl pb-8 capitalize">{username} Newsletter</h1>
+        <h1 className="text-7xl pb-8 capitalize text-black">{username} Newsletter</h1>
       </div>
 
       <form
