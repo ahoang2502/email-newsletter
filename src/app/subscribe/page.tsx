@@ -1,9 +1,12 @@
 "use client";
 
-import { subscribe } from "@/actions/add.subscribe";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
+
+import { subscribe } from "@/actions/add.subscribe";
+import { ICONS } from "@/shared/utils/Icons";
 
 const SubscribePage = () => {
   const [value, setValue] = useState("");
@@ -36,8 +39,17 @@ const SubscribePage = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center h-screen bg-white">
+      <Link
+        href="/dashboard"
+        className="text-zinc-700 flex justify-center items-center top-20 left-20 fixed hover:underline hover:text-black pr-3 pl-1 py-1 rounded-md"
+      >
+        {ICONS.backArrow} Back to Dashboard
+      </Link>
+
       <div className="">
-        <h1 className="text-7xl pb-8 capitalize text-black">{username} Newsletter</h1>
+        <h1 className="text-7xl pb-8 capitalize text-black">
+          {username} Newsletter
+        </h1>
       </div>
 
       <form

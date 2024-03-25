@@ -10,6 +10,14 @@ const subscriberSchema = new Schema(
     newsLetterOwnerId: {
       type: String,
     },
+    source: {
+      type: String,
+      default: "By ENewsletter website",
+    },
+    status: {
+      type: String,
+      default: "Subscribed",
+    },
   },
   { timestamps: true }
 );

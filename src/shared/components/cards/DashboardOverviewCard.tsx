@@ -1,5 +1,6 @@
-import { ICONS } from "@/shared/utils/Icons";
 import React from "react";
+
+import { ICONS } from "@/shared/utils/Icons";
 
 export const DashboardOverviewCard = () => {
   return (
