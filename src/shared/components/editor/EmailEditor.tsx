@@ -10,6 +10,7 @@ import { Button } from "@nextui-org/react";
 import { DefaultJsonData } from "@/assets/mails/default";
 import { saveEmail } from "@/actions/save.email";
 import { getEmailDetails } from "@/actions/get.email-details";
+import { sendEmail } from "@/shared/utils/EmailSender";
 
 type Props = {
   subjectTitle: string;
@@ -30,16 +31,17 @@ export function EmailEditorComponent({ subjectTitle }: Props) {
       const { design, html } = data;
 
       setJsonData(design);
+      console.log("env", process.env.NEXT_PUBLIC_USER_EMAIL);
 
-      //   await sendEmail({
-      //     userEmail: ["htanh2502@gmail.com"],
-      //     subject: subjectTitle,
-      //     content: html,
-      //   }).then((res) => {
-      //     toast.success("Email sent successfully!");
+      await sendEmail({
+        userEmail: [process.env.NEXT_PUBLIC_USER_EMAIL!],
+        subject: subjectTitle,
+        content: html,
+      }).then((res) => {
+        toast.success("Email sent successfully!");
 
-      //     router.push("/dashboard/write");
-      //   });
+        router.push("/dashboard/write");
+      });
     });
   };
 

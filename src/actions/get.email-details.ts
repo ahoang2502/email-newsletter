@@ -18,7 +18,7 @@ export const getEmailDetails = async ({
       newsLetterOwnerId,
     });
 
-    const formattedEmail = { ...email._doc, _id: email._doc._id.toString() };
+    const formattedEmail = { ...email?._doc, _id: email._doc?._id?.toString() };
 
     return formattedEmail;
   } catch (error) {

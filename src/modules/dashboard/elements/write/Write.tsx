@@ -15,6 +15,7 @@ export const Write = () => {
   const [open, setOpen] = useState(false);
 
   const [emails, setEmails] = useState<any>([]);
+  const [emailsLoading, setEmailsLoading] = useState(false);
   const router = useRouter();
 
   const { user } = useClerk();
@@ -30,9 +31,12 @@ export const Write = () => {
   };
 
   const findEmails = async () => {
+    setEmailsLoading(true);
+
     await getEmails({ newsLetterOwnerId: user?.id! })
       .then((res) => setEmails(res))
-      .catch((error) => console.log("🔴 [FIND_EMAILS]", error));
+      .catch((error) => console.log("🔴 [FIND_EMAILS]", error))
+      .finally(() => setEmailsLoading(false));
   };
 
   useEffect(() => {
@@ -41,7 +45,7 @@ export const Write = () => {
   }, [user]);
 
   const handleDelete = async (id: string) => {
-    //
+    //TODO
   };
 
   return (
@@ -53,6 +57,10 @@ export const Write = () => {
         <span className="text-2xl block text-center mb-2">{ICONS.plus}</span>
 
         <h5 className="text-xl ">Create new </h5>
+      </div>
+
+      <div className="w-[200px] h-[200px] z-[0] relative flex flex-col items-center justify-center rounded">
+        <p className="animate-spin">{ICONS.spinner}</p>
       </div>
 
       {/* Saved emails */}
