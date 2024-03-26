@@ -1,4 +1,5 @@
 import { Document, Model } from "mongoose";
+import { connectDb } from "../libs/db";
 
 interface MonthData {
   month: string;
@@ -8,6 +9,8 @@ interface MonthData {
 export async function generateAnalyticsData<T extends Document>(
   model: Model<T>
 ): Promise<{ last7Months: MonthData[] }> {
+  await connectDb(); //added
+
   const last7Months: MonthData[] = [];
 
   const currentDate = new Date();

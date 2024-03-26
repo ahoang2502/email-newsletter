@@ -9,6 +9,7 @@ import { ICONS } from "@/shared/utils/Icons";
 import { getEmails } from "@/actions/get.emails";
 import { useClerk } from "@clerk/nextjs";
 import Link from "next/link";
+import { deleteEmail } from "@/actions/delete.email";
 
 export const Write = () => {
   const [emailTitle, setEmailTitle] = useState("");
@@ -16,6 +17,8 @@ export const Write = () => {
 
   const [emails, setEmails] = useState<any>([]);
   const [emailsLoading, setEmailsLoading] = useState(false);
+
+  const [deleteEmailLoading, setDeleteEmailLoading] = useState(false);
   const router = useRouter();
 
   const { user } = useClerk();
@@ -35,7 +38,7 @@ export const Write = () => {
 
     await getEmails({ newsLetterOwnerId: user?.id! })
       .then((res) => setEmails(res))
-      .catch((error) => console.log("🔴 [FIND_EMAILS]", error))
+      .catch((error) => console.log("🔴 [FIND_EMAILS] ", error))
       .finally(() => setEmailsLoading(false));
   };
 
@@ -45,7 +48,11 @@ export const Write = () => {
   }, [user]);
 
   const handleDelete = async (id: string) => {
-    //TODO
+    setDeleteEmailLoading(true);
+
+    await deleteEmail({ emailId: id })
+      .then((res) => findEmails())
+      .finally(() => setDeleteEmailLoading(false));
   };
 
   return (
@@ -59,9 +66,11 @@ export const Write = () => {
         <h5 className="text-xl ">Create new </h5>
       </div>
 
-      <div className="w-[200px] h-[200px] z-[0] relative flex flex-col items-center justify-center rounded">
-        <p className="animate-spin">{ICONS.spinner}</p>
-      </div>
+      {emailsLoading && !deleteEmailLoading && (
+        <div className="w-[200px] h-[200px] z-[0] relative flex flex-col items-center justify-center rounded">
+          <p className="animate-spin">{ICONS.spinner}</p>
+        </div>
+      )}
 
       {/* Saved emails */}
       {emails &&
@@ -76,7 +85,7 @@ export const Write = () => {
               className="w-[200px] h-[200px] z-[0] relative bg-slate-50 flex flex-col items-center justify-center rounded border cursor-pointer"
             >
               <span
-                className="absolute block z-20 right-2 top-2 text-2xl cursor-pointer"
+                className="absolute block z-20 right-2 top-2 text-2xl cursor-pointer hover:text-rose-500"
                 onClick={() => handleDelete(i?._id)}
               >
                 {ICONS.delete}
@@ -86,7 +95,11 @@ export const Write = () => {
                 className="text-xl "
                 href={`/dashboard/new-email?subject=${formattedTitle}`}
               >
-                {i.title}
+                {deleteEmailLoading ? (
+                  <p className="animate-spin">{ICONS.spinner}</p>
+                ) : (
+                  i.title
+                )}
               </Link>
             </div>
           );

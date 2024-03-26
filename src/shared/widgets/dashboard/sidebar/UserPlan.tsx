@@ -1,8 +1,11 @@
 import { Slider } from "@nextui-org/slider";
 
 import { ICONS } from "@/shared/utils/Icons";
+import { useSubscribersData } from "@/shared/hooks/useSubscribersData";
 
 export const UserPlan = () => {
+  const { data, loading } = useSubscribersData();
+
   return (
     <div className="w-full min-w-[200px] my-3 p-3 bg-[#FDF1F8] rounded-2xl hover:shadow-xl cursor-pointer ">
       <div className="w-full flex items-center justify-between">
@@ -24,10 +27,12 @@ export const UserPlan = () => {
       <Slider
         aria-label="Player progress"
         hideThumb={true}
-        defaultValue={1}
+        defaultValue={data?.length}
         className="max-w-md"
       />
-      <h6 className="text-[#831743] text-sm md:text-base">0 of 2500 added</h6>
+      <h6 className="text-[#831743] text-sm md:text-base">
+        {loading ? "..." : data?.length} of 2500 added
+      </h6>
     </div>
   );
 };

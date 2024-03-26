@@ -33,7 +33,7 @@ export const sendEmail = async ({ userEmail, subject, content }: Props) => {
     const response = await transporter.sendMail({
       from: adminMail,
       to: userEmail,
-      subject,
+      subject: subject,
       html: content,
     });
 

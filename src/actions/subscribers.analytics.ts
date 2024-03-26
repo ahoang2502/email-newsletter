@@ -7,6 +7,7 @@ import { generateAnalyticsData } from "@/shared/utils/AnalyticsGenerator";
 export const subscribersAnalytics = async () => {
   try {
     await connectDb();
+
     const subscribers = await generateAnalyticsData(Subscriber);
 
     return subscribers;
