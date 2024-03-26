@@ -18,6 +18,7 @@ import { CgProfile } from "react-icons/cg";
 import { FiPlusCircle } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoIosRepeat } from "react-icons/io";
+import { PiSpinner } from "react-icons/pi";
 
 export const ICONS = {
   right: <IoMdCheckmark />,
@@ -40,4 +41,5 @@ export const ICONS = {
   plus: <FiPlusCircle />,
   delete: <MdDeleteOutline />,
   regenerate: <IoIosRepeat />,
+  spinner: <PiSpinner size={25} />,
 };

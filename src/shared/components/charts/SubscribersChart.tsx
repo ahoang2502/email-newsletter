@@ -1,15 +1,17 @@
 "use client";
 
 import {
-  LineChart,
+  CartesianGrid,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from "recharts";
-import { useEffect, useState } from "react";
+
+import { useSubscribersAnalytics } from "@/shared/hooks/useSubscribersAnalytics";
+import { ICONS } from "@/shared/utils/Icons";
 
 interface subscribersAnalyticsData {
   month: string;
@@ -17,38 +19,17 @@ interface subscribersAnalyticsData {
 }
 
 export const SubscribersChart = () => {
-  const [subscribersData, setSubscribersData] = useState<any>([]);
+  const { subscribersData, loading } = useSubscribersAnalytics();
 
-  const data = [
-    {
-      month: "Jan 2024",
-      count: 2400,
-    },
-    {
-      month: "Feb 2024",
-      count: 1398,
-    },
-    {
-      month: "March 2024",
-      count: 9800,
-    },
-    {
-      month: "April 2024",
-      count: 3908,
-    },
-    {
-      month: "May 2024",
-      count: 4800,
-    },
-    {
-      month: "Jun 2024",
-      count: 3800,
-    },
-    {
-      month: "July 2024",
-      count: 4300,
-    },
-  ];
+  const data: subscribersAnalyticsData[] = [];
+
+  subscribersData &&
+    subscribersData?.last7Months?.forEach((item: subscribersAnalyticsData) => {
+      data.push({
+        month: item?.month,
+        count: item?.count,
+      });
+    });
 
   return (
     <div className="my-5 p-5 border rounded bg-white w-full md:h-[55vh] xl:h-[60vh]">
@@ -65,9 +46,10 @@ export const SubscribersChart = () => {
         </div>
       </div>
 
-      {false ? (
-        <div className="h-[85%] flex items-center justify-center w-full">
-          <h5>Loading...</h5>
+      {loading ? (
+        <div className="flex items-center justify-center h-[85%] w-full">
+          <p className="animate-spin">{ICONS.spinner}</p>
+          <p className="ml-2">Loading...</p>
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={"85%"} className={"mt-5"}>
