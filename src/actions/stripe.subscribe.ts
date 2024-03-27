@@ -1,6 +1,7 @@
 "use server";
 
 import Membership from "@/models/membership.model";
+import { connectDb } from "@/shared/libs/db";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -14,6 +15,8 @@ export const stripeSubscribe = async ({
   price: string;
   userId: string;
 }) => {
+  await connectDb();
+
   try {
     const user = await Membership.findOne({ userId });
 

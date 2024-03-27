@@ -20,6 +20,6 @@ const membershipSchema = new Schema(
 );
 
 const Membership =
-  mongoose.models.Membership || mongoose.model("Membership", membershipSchema);
+  mongoose.models?.Membership || mongoose.model("Membership", membershipSchema);
 
 export default Membership;

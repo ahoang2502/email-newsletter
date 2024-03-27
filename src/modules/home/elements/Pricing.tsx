@@ -25,7 +25,7 @@ export const Pricing = () => {
                 active === "Monthly"
                   ? "bg-[#3843d0] text-white"
                   : "bg-white text-black"
-              } rounded-r-[0] !p-7 text-2xl !px-16 border border-[#000]`}
+              } rounded-r-[0] !p-7 text-2xl !px-16 border-2 border-[#000]`}
               onClick={() => setActive("Monthly")}
             >
               Monthly
@@ -36,7 +36,7 @@ export const Pricing = () => {
                 active === "Yearly"
                   ? "bg-[#3843d0] text-white"
                   : "bg-white text-black"
-              } rounded-l-[0] !p-7 text-2xl !px-16 border border-[#000]`}
+              } rounded-l-[0] !p-7 text-2xl !px-16 border-2 border-[#000]`}
               onClick={() => setActive("Yearly")}
             >
               Yearly
