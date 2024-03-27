@@ -1,14 +1,33 @@
-import { ICONS } from "@/shared/utils/Icons";
 import { Button } from "@nextui-org/button";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
+import { ICONS } from "@/shared/utils/Icons";
 import { GrowPlan, freePlan, scalePlan } from "@/app/configs/constants";
+import { stripeSubscribe } from "@/actions/stripe.subscribe";
 
 type Props = {
   active: string;
 };
 
 export const PricingCard = ({ active }: Props) => {
-  const handleSubscription = () => {};
+  const { user } = useUser();
+  const router = useRouter();
+
+  const handleSubscription = async ({
+    price,
+    plan,
+  }: {
+    price: string;
+    plan: string;
+  }) => {
+    await stripeSubscribe({
+      userId: user?.id!,
+      price,
+    }).then((res: any) => {
+      router.push(res);
+    });
+  };
 
   return (
     <div className="w-full md:flex items-start justify-around py-8">
@@ -96,7 +115,7 @@ export const PricingCard = ({ active }: Props) => {
         <br />
         <div className="border-b pb-6 border-black">
           <h5 className="font-clashDisplay uppercase text-cyber-ink text-3xl">
-            ${active === "Monthly" ? "42" : "49"}/month
+            ${active === "Monthly" ? "49" : "42"}/month
           </h5>
 
           <p className="text-lg text-zinc-500">Billed {active}</p>
@@ -119,6 +138,15 @@ export const PricingCard = ({ active }: Props) => {
           <Button
             color="primary"
             className="absolute text-xl !py-6 hover:-translate-x-1.5 hover:-translate-y-1.5 z-[999] hover:!opacity-100 border-2 border-[#000]"
+            onClick={() =>
+              handleSubscription({
+                price:
+                  active === "Monthly"
+                    ? "price_1Oyk5lIJ13K7QXUplq4OcqYP"
+                    : "price_1OynHlIJ13K7QXUpuZOssId3",
+                plan: "GROW",
+              })
+            }
           >
             Get Started
           </Button>
@@ -185,14 +213,13 @@ export const PricingCard = ({ active }: Props) => {
           <Button
             className="relative rounded-2xl bg-pink-500 text-xl !py-6 border-2 border-[#000] "
             onClick={() =>
-              handleSubscription(
-              //   {
-              //   price:
-              //     active === "Monthly"
-              //       ? "price_1On2H2SA1WAzNgKlV64Zj6gE"
-              //       : "price_1Onf9gSA1WAzNgKlg8NLBP4r",
-              // }
-              )
+              handleSubscription({
+                price:
+                  active === "Monthly"
+                    ? "price_1Oyk1OIJ13K7QXUpBnpvai9S"
+                    : "84",
+                plan: "price_1OynIRIJ13K7QXUpAOZDKmlR",
+              })
             }
           >
             Get Started

@@ -1,5 +1,6 @@
 type NavItems = {
   title: String;
+  href: String;
 };
 
 type PartnersTypes = {

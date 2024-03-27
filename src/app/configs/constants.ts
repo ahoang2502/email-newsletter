@@ -5,15 +5,19 @@ import { ICONS } from "@/shared/utils/Icons";
 export const navItems: NavItems[] = [
   {
     title: "Features",
+    href: "/",
   },
   {
     title: "Pricing",
+    href: "#pricing",
   },
   {
     title: "Resources",
+    href: "/",
   },
   {
     title: "Docs",
+    href: "/",
   },
 ];
 

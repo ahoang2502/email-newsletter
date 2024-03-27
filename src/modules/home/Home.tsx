@@ -8,7 +8,6 @@ import { FeatureHighlight } from "./elements/FeatureHighlight";
 import { Pricing } from "./elements/Pricing";
 import Footer from "@/shared/widgets/footer";
 
-
 const Home = () => {
   return (
     <div className="text-black">

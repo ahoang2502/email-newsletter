@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 
 import { DashboardSidebar } from "../widgets/dashboard/sidebar/DashboardSidebar";
+import { addStripe } from "@/actions/add.stripe";
+import { User } from "@clerk/nextjs/server";
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -14,9 +16,18 @@ interface ProviderProps {
 export default function Providers({ children }: ProviderProps) {
   const pathname = usePathname();
 
-  const { isLoaded } = useUser();
+  const { isLoaded, user } = useUser();
+
+  const isStripeCustomerIdHas = async () => {
+    await addStripe();
+  };
 
   if (!isLoaded) return null;
+  else {
+    if (user) {
+      isStripeCustomerIdHas();
+    }
+  }
 
   return (
     <NextUIProvider>
