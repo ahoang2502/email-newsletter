@@ -83,7 +83,7 @@ export const DashboardItems = ({ bottomContent }: Props) => {
 
                 <span
                   className={`text-lg mr-2 ${
-                    item.url === activeRoute && "text-[#463bbd] bg-[#463bbd]/50"
+                    item.url === activeRoute && "text-[#463bbd] "
                   } `}
                 >
                   {item.title}

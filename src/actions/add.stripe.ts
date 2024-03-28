@@ -26,6 +26,8 @@ export const addStripe = async () => {
           name: user?.firstName! + user?.lastName,
         })
         .then(async (customer) => {
+          await connectDb()
+          
           await Membership.create({
             userId: user?.id,
             stripeCustomerId: customer.id,

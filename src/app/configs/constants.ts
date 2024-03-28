@@ -93,7 +93,7 @@ export const reportFilterActiveItem = atom<string>("Overview");
 
 export const emailEditorDefaultValue = atom<string>("");
 
-export const settingsActiveItem = atom<string>("Profile");
+export const settingsActiveItem = atom<string>("API Access");
 
 export const sideBarItems: DashboardSideBarTypes[] = [
   {

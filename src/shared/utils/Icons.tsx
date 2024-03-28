@@ -9,7 +9,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { BiWorld } from "react-icons/bi";
 import { CgLogOut } from "react-icons/cg";
 import { IoMdArrowUp } from "react-icons/io";
-import { FaLink } from "react-icons/fa6";
+import { FaLink, FaRepeat } from "react-icons/fa6";
 import { RiExternalLinkLine } from "react-icons/ri";
 import { IoIosArrowBack } from "react-icons/io";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -17,7 +17,6 @@ import { RxCross2 } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { FiPlusCircle } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
-import { IoIosRepeat } from "react-icons/io";
 import { PiSpinner } from "react-icons/pi";
 
 export const ICONS = {
@@ -40,6 +39,6 @@ export const ICONS = {
   profile: <CgProfile />,
   plus: <FiPlusCircle />,
   delete: <MdDeleteOutline />,
-  regenerate: <IoIosRepeat />,
+  regenerate: <FaRepeat />,
   spinner: <PiSpinner size={25} />,
 };
