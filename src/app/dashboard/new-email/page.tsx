@@ -2,9 +2,17 @@
 
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 
 import { ICONS } from "@/shared/utils/Icons";
-import { EmailEditorComponent } from "@/shared/components/editor/EmailEditor";
+
+const EmailEditorComponent = dynamic(
+  // @ts-ignore
+  () => import("@/shared/components/editor/EmailEditor"),
+  {
+    ssr: false,
+  }
+);
 
 const NewEmailPage = () => {
   const searchParams = useSearchParams();
@@ -28,6 +36,7 @@ const NewEmailPage = () => {
 
         {/* Email Editor */}
         <div className="my-5">
+          {/* @ts-ignore */}
           <EmailEditorComponent subjectTitle={subjectTitle} />
         </div>
       </div>
