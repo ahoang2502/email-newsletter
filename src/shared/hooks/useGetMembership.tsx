@@ -15,7 +15,6 @@ export const useGetMembership = () => {
   const handleGetMembership = async () => {
     await getMembership()
       .then((res) => {
-  
         setData(res);
       })
       .catch((error) => console.log("🔴 [GET_MEMBERSHIP] ", error))

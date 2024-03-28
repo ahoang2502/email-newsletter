@@ -36,7 +36,7 @@ export const Main = () => {
   };
 
   return (
-    <div className="p-5 w-full bg-[#f9fafb]">
+    <div className="p-5 w-full bg-[#f9fafb] h-[100vh]">
       <h1 className="text-2xl text-surface-900 font-medium">
         Hi {user?.fullName} 👋🏻
       </h1>
@@ -71,7 +71,7 @@ export const Main = () => {
           <div className="">
             <h5 className="text-xl font-medium">Resources</h5>
 
-            <div className="w-full min-w-[220px] bg-white border rounded p-5 my-3">
+            <div className="w-full min-w-[220px] bg-white border rounded px-5 py-3 my-3">
               {/* Home page URL */}
               <div className="">
                 <h4 className="font-medium">Home page</h4>
@@ -100,7 +100,7 @@ export const Main = () => {
           </div>
 
           {/* Tutorials */}
-          <div className="w-full bg-white border rounded p-5 my-3 min-w-[220px]">
+          <div className="w-full bg-white border rounded px-5 py-3 my-3 min-w-[220px]">
             <h5 className="font-medium">Tutorials</h5>
             <p className="text-sm opacity-[.7]">
               Learn how to get started on becodemy and utilize all our features,
@@ -113,7 +113,7 @@ export const Main = () => {
           </div>
 
           {/* Need help? */}
-          <div className="w-full min-w-[220px] bg-white border rounded p-5 my-3">
+          <div className="w-full min-w-[220px] bg-white border rounded px-5 py-3 my-3">
             <h5 className="font-medium">Need help?</h5>
             <Link href={"/"}>
               <div className="w-max px-3 my-2 h-[33px] bg-transparent border rounded-lg flex items-center">
